@@ -71,6 +71,6 @@ jobs:
         with:
           push: ${{ !env.ACT }}
           tags: ${{ steps.meta.outputs.tags }}
-          context: backend/
-          file: backend/Dockerfile.dist
+          context: images/${{ matrix.image }}
+          file: images/${{ matrix.image }}/${{ matrix.dockerfile }}
           platforms: linux/amd64,linux/arm64
