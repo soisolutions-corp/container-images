@@ -26,7 +26,7 @@ ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-stati
 RUN chmod +x /tini
 
 # Statically compiled git
-FROM ghcr.io/soisolutions-corp/git:2.44.0 AS git
+FROM ghcr.io/soisolutions-corp/git:2.46.0 AS git
 
 FROM busybox:1.36.1-uclibc as busybox
 
