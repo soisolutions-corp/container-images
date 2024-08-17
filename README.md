@@ -14,3 +14,4 @@ A hardened Cribl container image.
 * `busybox` system utilities are installed.
 * Runs the [s6-overlay](https://github.com/just-containers/s6-overlay) process supervisor.
 * The Cribl process is wrapped using [tini](https://github.com/krallin/tini) for clean shutdown.
+* Git is included as a statically compiled binary.
