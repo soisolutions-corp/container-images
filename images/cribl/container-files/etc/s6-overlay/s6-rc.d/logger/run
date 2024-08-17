@@ -1,0 +1,6 @@
+#!/command/execlineb
+with-contenv
+# s6-setuidgid nonroot
+importas -D "/opt/cribl" CRIBL_HOME CRIBL_VOLUME_DIR
+redirfd -w -n 2 /dev/null
+exec tail -n 0 -F ${CRIBL_HOME}/log/cribl.log

@@ -1,0 +1,4 @@
+#!/bin/sh
+# Cribl will run `systemctl is-enabled cribl` to check if the service is enabled
+# All we need to do is echo back "enabled" to make it think we're running in systemd
+echo "enabled"

@@ -1,0 +1,13 @@
+#!/command/execlineb
+
+with-contenv
+
+# Tell s6-supervise to only permit one running instance
+# foreground { s6-svc -O /run/service/cribl }
+
+# s6-setuidgid nonroot
+
+redirfd -w -n 1 /dev/null
+redirfd -w -n 2 /dev/null
+
+exec /tini -s -- /opt/cribl/bin/cribl server
