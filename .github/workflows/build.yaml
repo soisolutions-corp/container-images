@@ -4,8 +4,6 @@ on:
   push:
     tags:
       - '*'
-    branches:
-      - main
 
 permissions:
   contents: read
@@ -25,6 +23,10 @@ jobs:
         name: Setup Matrix
         shell: bash
         run: |
+          if [ ! -d images/${${{ github.ref_name }}%-*} ]; then
+            echo "${{ github.ref_name }} is not a valid tag for this workflow! Use the format <image>-<semver>. Image must be one of: $(ls -1 images | xargs -n1 basename | jq --raw-input | jq -rcs 'map(.) | join(\", \")')" >&2
+            exit 1
+          fi
           echo "matrix={\"image\":\"${${{ github.ref_name }}%-*}\",\"version\":\"${${{ github.ref_name }}##*-}\",\"include\":$(ls -1 images/${PREFIX}/*Dockerfile | xargs -n1 basename | jq --raw-input | jq -cs 'map( {"dockerfile": .} | if (.dockerfile | endswith(".Dockerfile")) then .suffix=(.dockerfile | rtrimstr(".Dockerfile")) else . end)')}" >> "$GITHUB_OUTPUT"
 
   build:
