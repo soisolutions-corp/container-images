@@ -64,6 +64,7 @@ jobs:
             type=semver,pattern={{version}},value=${{ matrix.version }}
             type=raw,value=latest,enable=${{ ! matrix.suffix }}
           flavor: |
+            latest=false
             suffix=${{ matrix.suffix || '' }}
 
       - name: Build Docker Container Image
