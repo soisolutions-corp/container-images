@@ -31,7 +31,7 @@ jobs:
           echo "matrix={\"include\":$(ls -1 images/${TAG%-*}/*Dockerfile | xargs -n1 basename | jq --raw-input | jq -cs 'map( {"image": "'${TAG%-*}'", "version": "'${TAG##*-}'", "dockerfile": .} | if (.dockerfile | endswith(".Dockerfile")) then .suffix=(.dockerfile | rtrimstr(".Dockerfile")) else . end)')}" >> "$GITHUB_OUTPUT"
 
   build:
-    name: Building image - ${{ matrix.image }}:${{ matrix.version }}${{ matrix.suffix && format('-%s', matrix.suffix) || ''}}
+    name: Building image - ${{ matrix.image }}:${{ matrix.version }}${{ matrix.suffix && '-' }}${{ matrix.suffix }}
     runs-on: ubuntu-latest
     needs: set-matrix
     strategy:
