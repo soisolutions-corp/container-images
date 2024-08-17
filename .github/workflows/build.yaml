@@ -65,7 +65,7 @@ jobs:
             type=raw,value=latest,enable=${{ ! matrix.suffix }}
           flavor: |
             latest=false
-            suffix=${{ matrix.suffix || '' }}
+            suffix=${{ matrix.suffix && '-' }}${{ matrix.suffix || '' }}
 
       - name: Build Docker Container Image
         uses: docker/build-push-action@v6
