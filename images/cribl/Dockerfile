@@ -21,7 +21,7 @@ RUN wget -q -O - https://github.com/just-containers/s6-overlay/releases/download
 FROM ghcr.io/soisolutions-corp/wait-all:1.0.0 as wait-all
 
 # Statically compiled git
-FROM ghcr.io/soisolutions-corp/git:2.46.0 AS git
+FROM ghcr.io/soisolutions-corp/git:2.46.1 AS git
 
 FROM busybox:1.36.1-uclibc as busybox
 
