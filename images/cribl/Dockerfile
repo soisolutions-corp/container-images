@@ -39,6 +39,7 @@ COPY --from=s6-overlay /s6/ /
 # Make /var/run a symlink to /run so we can run this in an read-only container
 RUN /bin/rm -rf /var/run
 RUN /bin/ln -s /run /var/run
+RUN chown 65532:65532 /run
 
 # Copy in all of our container files
 COPY container-files /
