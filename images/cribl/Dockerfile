@@ -18,18 +18,18 @@ RUN wget -q -O - https://github.com/just-containers/s6-overlay/releases/download
 RUN wget -q -O - https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-${S6_ARCH}.tar.xz | tar Jxpf - -C /s6
 
 # Custom process supervisor
-FROM ghcr.io/soisolutions-corp/wait-all:1.0.1 as wait-all
+FROM ghcr.io/soisolutions-corp/wait-all:1.0.1 AS wait-all
 
 # Statically compiled git
 FROM ghcr.io/soisolutions-corp/git:2.46.1 AS git
 
-FROM busybox:1.36.1-uclibc as busybox
+FROM busybox:1.36.1-uclibc AS busybox
 
-FROM cribl/cribl:4.8.2 as cribl
+FROM cribl/cribl:4.8.2 AS cribl
 
 # Cribl requires glibc, so we use the cc-debian12 image
 # https://github.com/GoogleContainerTools/distroless/blob/main/base/README.md
-FROM gcr.io/distroless/cc-debian12 as final
+FROM gcr.io/distroless/cc-debian12 AS final
 COPY --from=busybox /bin /bin
 COPY --from=git /usr/local/bin/git /usr/local/bin/git
 COPY --from=cribl --chown=65532:65532 /opt/cribl /opt/cribl
