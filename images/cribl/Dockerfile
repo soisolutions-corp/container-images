@@ -17,13 +17,8 @@ WORKDIR /s6
 RUN wget -q -O - https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz | tar Jxpf - -C /s6
 RUN wget -q -O - https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-${S6_ARCH}.tar.xz | tar Jxpf - -C /s6
 
-# Tini
-FROM base AS tini
-# renovate: datasource=github-tags depName=krallin/tini
-ARG TINI_VERSION=v0.19.0
-ARG TARGETARCH
-ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static-${TARGETARCH} /tini
-RUN chmod +x /tini
+# Custom process supervisor
+FROM ghcr.io/soisolutions-corp/wait-all:1.0.0 as wait-all
 
 # Statically compiled git
 FROM ghcr.io/soisolutions-corp/git:2.46.0 AS git
@@ -38,7 +33,7 @@ FROM gcr.io/distroless/cc-debian12 as final
 COPY --from=busybox /bin /bin
 COPY --from=git /usr/local/bin/git /usr/local/bin/git
 COPY --from=cribl --chown=65532:65532 /opt/cribl /opt/cribl
-COPY --from=tini /tini /tini
+COPY --from=wait-all /usr/local/bin/wait-all /usr/local/bin/wait-all
 COPY --from=s6-overlay /s6/ /
 
 # Make /var/run a symlink to /run so we can run this in an read-only container
@@ -48,12 +43,12 @@ RUN /bin/ln -s /run /var/run
 # Copy in all of our container files
 COPY container-files /
 
-# Set user to `nonroot`
-USER 65532
-
 # Flatten the final image
 FROM scratch
 COPY --from=final / /
+
+# Set user to `nonroot`
+USER 65532
 
 # Make s6-overlay less chatty
 ENV S6_VERBOSITY=0
