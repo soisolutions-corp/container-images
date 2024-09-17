@@ -11,7 +11,7 @@ This is a custom Cribl container image. The Cribl binary is obtained from the of
   * All dependencies are statically compiled.
   * The Cribl process is wrapped using a [custom init handler](../../images/wait-all) for clean shutdown.
 * Size
-  * As of version 4.8, the official Cribl container image is 460MB. This image is 330MB.
+  * As of version 4.8, the official Cribl container image is 640MB. This image is 330MB.
 
 ## Notes
 
