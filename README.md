@@ -13,5 +13,5 @@ A hardened Cribl container image.
   * The `/opt/cribl` directory is owned by the non-root user allowing for some flexibility.
 * `busybox` system utilities are installed.
 * Runs the [s6-overlay](https://github.com/just-containers/s6-overlay) process supervisor.
-* The Cribl process is wrapped using [tini](https://github.com/krallin/tini) for clean shutdown.
+* The Cribl process is wrapped using a [custom init handler](images/wait-all) for clean shutdown.
 * Git is included as a statically compiled binary.
