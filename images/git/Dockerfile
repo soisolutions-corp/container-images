@@ -3,7 +3,7 @@ FROM debian:bookworm-slim as git
 WORKDIR /tmp
 
 # renovate: datasource=github-tags depName=git/git
-ARG GIT_VERSION=2.46.1
+ARG GIT_VERSION=2.46.2
 
 # Install dependencies
 RUN apt-get update && apt-get install -y build-essential gettext autoconf libz-dev libssl-dev
