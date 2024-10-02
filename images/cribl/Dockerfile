@@ -23,7 +23,7 @@ FROM ghcr.io/soisolutions-corp/wait-all:1.0.1 AS wait-all
 # Statically compiled git
 FROM ghcr.io/soisolutions-corp/git:2.46.2 AS git
 
-FROM busybox:1.36.1-uclibc AS busybox
+FROM busybox:1.37.0-uclibc AS busybox
 
 FROM cribl/cribl:4.8.2 AS cribl
 
