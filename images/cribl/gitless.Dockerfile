@@ -20,7 +20,7 @@ RUN wget -q -O - https://github.com/just-containers/s6-overlay/releases/download
 # Custom process supervisor
 FROM ghcr.io/soisolutions-corp/wait-all:1.0.1 as wait-all
 
-FROM busybox:1.36.1-uclibc as busybox
+FROM busybox:1.37.0-uclibc as busybox
 
 FROM cribl/cribl:4.8.2 as cribl
 
