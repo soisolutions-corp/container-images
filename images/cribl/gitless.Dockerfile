@@ -12,7 +12,7 @@ ARG S6_ARCH=x86_64
 
 FROM s6-arch-${TARGETARCH} AS s6-overlay
 # renovate: datasource=github-tags depName=just-containers/s6-overlay
-ARG S6_OVERLAY_VERSION=v3.2.0.0
+ARG S6_OVERLAY_VERSION=v3.2.0.2
 WORKDIR /s6
 RUN wget -q -O - https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz | tar Jxpf - -C /s6
 RUN wget -q -O - https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-${S6_ARCH}.tar.xz | tar Jxpf - -C /s6
