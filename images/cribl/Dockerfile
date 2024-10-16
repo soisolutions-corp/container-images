@@ -25,7 +25,7 @@ FROM ghcr.io/soisolutions-corp/git:2.47.0 AS git
 
 FROM busybox:1.37.0-uclibc AS busybox
 
-FROM cribl/cribl:4.8.2 AS cribl
+FROM cribl/cribl:4.9.0 AS cribl
 
 # Cribl requires glibc, so we use the cc-debian12 image
 # https://github.com/GoogleContainerTools/distroless/blob/main/base/README.md
