@@ -18,7 +18,7 @@ RUN wget -q -O - https://github.com/just-containers/s6-overlay/releases/download
 RUN wget -q -O - https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-${S6_ARCH}.tar.xz | tar Jxpf - -C /s6
 
 # Custom process supervisor
-FROM ghcr.io/soisolutions-corp/wait-all:1.0.1 as wait-all
+FROM ghcr.io/soisolutions-corp/wait-all:1.0.2 as wait-all
 
 FROM busybox:1.37.0-uclibc as busybox
 
