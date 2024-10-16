@@ -18,7 +18,7 @@ RUN wget -q -O - https://github.com/just-containers/s6-overlay/releases/download
 RUN wget -q -O - https://github.com/just-containers/s6-overlay/releases/download/${S6_OVERLAY_VERSION}/s6-overlay-${S6_ARCH}.tar.xz | tar Jxpf - -C /s6
 
 # Custom process supervisor
-FROM ghcr.io/soisolutions-corp/wait-all:1.0.1 AS wait-all
+FROM ghcr.io/soisolutions-corp/wait-all:1.0.2 AS wait-all
 
 # Statically compiled git
 FROM ghcr.io/soisolutions-corp/git:2.47.0 AS git
