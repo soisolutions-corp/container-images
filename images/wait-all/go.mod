@@ -2,7 +2,7 @@ module subreaper
 
 go 1.23
 
-require golang.org/x/sys v0.26.0
+require golang.org/x/sys v0.27.0
 
 require github.com/ebitengine/purego v0.8.1 // indirect
 
