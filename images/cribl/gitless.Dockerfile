@@ -22,7 +22,7 @@ FROM ghcr.io/soisolutions-corp/wait-all:1.0.2 as wait-all
 
 FROM busybox:1.37.0-uclibc as busybox
 
-FROM cribl/cribl:4.9.1 as cribl
+FROM cribl/cribl:4.9.3 as cribl
 
 # Cribl requires glibc, so we use the cc-debian12 image
 # https://github.com/GoogleContainerTools/distroless/blob/main/base/README.md
